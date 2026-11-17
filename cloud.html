@@ -489,4 +489,152 @@
                         <tr>
                             <td><strong>Hotel Reservasi</strong></td>
                             <td><strong>Cloudbeds</strong>, <strong>Mews</strong>, <strong>Hotelogix</strong></td>
-                            <td>Mengatur <i>check-in/out</i> dan menyinkronkan ketersediaan kamar secara otomatis ke OTA (Agoda
+                            <td>Mengatur <i>check-in/out</i> dan menyinkronkan ketersediaan kamar secara otomatis ke OTA (Agoda, Traveloka, Booking.com) agar tidak terjadi <i>double booking</i>.</td>
+                            <td>
+                                <span class="badge badge-green">+</span> Sinkronisasi lintas OTA otomatis & pantau okupansi jarak jauh.<br>
+                                <span class="badge badge-red">-</span> Operasional resepsionis lumpuh jika internet hotel putus.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rumah Sakit</strong></td>
+                            <td><strong>athenaOne</strong>, <strong>CareCloud</strong>, <strong>Epic Systems</strong></td>
+                            <td>Mencatat riwayat klinis, resep dokter, dan hasil lab secara terenkripsi agar bisa diakses bersamaan oleh seluruh unit/poli rumah sakit secara <i>real-time</i>.</td>
+                            <td>
+                                <span class="badge badge-green">+</span> Kolaborasi antar-unit akurat & standar keamanan medis tinggi.<br>
+                                <span class="badge badge-red">-</span> Biaya lisensi/berlangganan relatif mahal bagi klinik kecil.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kuliner / F&B</strong></td>
+                            <td><strong>Toast POS</strong>, <strong>Sapaad</strong>, <strong>Apicbase</strong></td>
+                            <td>Menerima pesanan kasir & aplikasi <i>delivery</i>, meneruskannya langsung ke layar dapur (<i>KDS</i>), dan memotong stok bahan baku otomatis.</td>
+                            <td>
+                                <span class="badge badge-green">+</span> Dapur lebih cepat, minim salah catat, & stok otomatis.<br>
+                                <span class="badge badge-red">-</span> Bergantung pada perangkat keras khusus vendor & internet stabil.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- MATERI 6 -->
+        <section class="topic-section" data-topic="topik-6">
+            <h2>6. Rumah Sakit: Sewa Layanan Cloud vs. Membuat Aplikasi Sendiri</h2>
+            <p>Perbandingan strategis antara menggunakan aplikasi <i>cloud</i> komersial dengan membangun sistem rekam medis sendiri (<i>In-House Development</i>):</p>
+
+            <div class="grid-2">
+                <div class="sub-card">
+                    <span class="badge badge-green">Opsi A: Sewa Layanan Cloud</span>
+                    <h3>Contoh: athenaOne / CareCloud</h3>
+                    <ul>
+                        <li><strong>Keunggulan:</strong> Cepat diimplementasikan, keamanan dan enkripsi sudah memenuhi standar regulasi medis, serta pembaruan sistem ditangani vendor.</li>
+                        <li><strong>Kekurangan:</strong> Biaya langganan jangka panjang tinggi dan alur kerja rumah sakit harus menyesuaikan fitur bawaan vendor.</li>
+                    </ul>
+                </div>
+
+                <div class="sub-card">
+                    <span class="badge badge-neutral">Opsi B: Buat Aplikasi Sendiri</span>
+                    <h3>In-House / Custom Development</h3>
+                    <ul>
+                        <li><strong>Keunggulan:</strong> Kustomisasi 100% sesuai SOP rumah sakit serta kepemilikan penuh atas kode sumber dan data tanpa <i>vendor lock-in</i>.</li>
+                        <li><strong>Kekurangan:</strong> Memakan waktu pengembangan lama, butuh tim IT & ahli keamanan siber besar, serta seluruh risiko kebocoran data ditanggung sendiri.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="summary-box">
+                <strong>Kesimpulan Pemilihan:</strong>
+                <ul style="margin-top: 8px; margin-bottom: 0;">
+                    <li><strong>Pilih Layanan Cloud</strong> jika rumah sakit/klinik membutuhkan sistem yang <strong>cepat beroperasi, aman secara standar internasional, dan tanpa merekrut tim IT besar</strong>.</li>
+                    <li><strong>Pilih Membuat Sendiri</strong> jika merupakan grup rumah sakit berskala sangat besar dengan <strong>anggaran melimpah, tim IT internal kuat, dan SOP yang sangat spesifik</strong>.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- MATERI 7 (PERTEMUAN 7) -->
+        <section class="topic-section" data-topic="topik-7">
+            <span class="badge badge-green">Pertemuan 7</span>
+            <h2>7. Deployment dan Pengelolaan Aplikasi Cloud</h2>
+            <p>Materi ini membahas bagaimana aplikasi dijalankan dan dikelola di lingkungan <i>cloud</i>. Setelah memahami jenis layanan <i>cloud</i> dan cara mempublikasikan website, kita perlu mengenal teknologi untuk menjalankan aplikasi dengan lebih fleksibel:</p>
+
+            <div class="grid-2">
+                <div class="sub-card">
+                    <span class="badge badge-neutral">1. Virtualisasi</span>
+                    <h3>Virtual Machine (VM)</h3>
+                    <p>Komputer virtual yang berjalan di atas perangkat keras fisik, lengkap dengan sumber daya CPU, RAM, penyimpanan, dan sistem operasi sendiri.</p>
+                    <p style="margin-bottom: 0;">Dalam <i>cloud computing</i>, pengguna dapat menyewa VM dari penyedia <i>cloud</i> untuk menjalankan website, database, maupun aplikasi lainnya.</p>
+                </div>
+
+                <div class="sub-card">
+                    <span class="badge badge-neutral">2. Kontainerisasi</span>
+                    <h3>Container</h3>
+                    <p>Teknologi untuk mengemas aplikasi beserta seluruh kebutuhan pendukungnya (<i>dependencies</i>) agar dapat dijalankan secara konsisten di berbagai lingkungan.</p>
+                    <p style="margin-bottom: 0;">Salah satu teknologi <i>container</i> yang paling banyak digunakan adalah <strong>Docker</strong>.</p>
+                </div>
+
+                <div class="sub-card">
+                    <span class="badge badge-neutral">3. Orkestrasi</span>
+                    <h3>Kubernetes</h3>
+                    <p>Platform untuk mengelola <i>container</i> secara terpusat dan otomatis.</p>
+                    <p style="margin-bottom: 0;">Teknologi ini membantu mengatur proses <i>deployment</i>, jumlah <i>container</i> yang berjalan, serta pengelolaan aplikasi dalam skala besar.</p>
+                </div>
+
+                <div class="sub-card">
+                    <span class="badge badge-neutral">4. Komputasi Tanpa Server</span>
+                    <h3>Serverless</h3>
+                    <p>Model layanan yang memungkinkan pengembang menjalankan kode atau fungsi spesifik tanpa harus mengelola server secara langsung.</p>
+                    <p style="margin-bottom: 0;"><strong>Contoh Layanan:</strong> AWS Lambda, Google Cloud Functions, dan Azure Functions.</p>
+                </div>
+            </div>
+
+            <div class="sub-card" style="margin-top: 16px;">
+                <span class="badge badge-green">5. Scaling dan Load Balancing</span>
+                <ul>
+                    <li><strong>Scalability:</strong> Kemampuan sistem menyesuaikan kapasitas sumber daya sesuai kebutuhan pengguna.</li>
+                    <li><strong>Auto-scaling:</strong> Proses menambah atau mengurangi sumber daya secara otomatis berdasarkan kondisi beban sistem.</li>
+                    <li><strong>Load Balancing:</strong> Membagi permintaan (<i>traffic</i>) pengguna ke beberapa server agar beban kerja lebih merata.</li>
+                    <li><strong>Cost Optimization:</strong> Mengatur penggunaan sumber daya <i>cloud</i> agar biaya operasional tetap efisien.</li>
+                </ul>
+
+                <div class="example-box">
+                    <strong>Contoh Penerapan (Website Toko Online):</strong>
+                    <p style="margin-top: 6px; margin-bottom: 0;">Sebuah website toko online mengalami lonjakan pengunjung saat promo berlangsung. Jika hanya memakai satu server, beban server akan terlalu tinggi. Dengan bantuan <strong>load balancing</strong>, permintaan pengguna dibagi merata ke beberapa server, sementara <strong>auto-scaling</strong> menambah kapasitas server secara otomatis saat trafik meningkat.</p>
+                </div>
+            </div>
+
+            <div class="summary-box">
+                <strong>Kesimpulan Pertemuan 7:</strong>
+                <p style="margin-top: 6px; margin-bottom: 0;">Teknologi <strong>VM, Container, Kubernetes, dan Serverless</strong> memberikan beragam pilihan arsitektur untuk menjalankan aplikasi di <i>cloud</i>. Melalui penerapan <i>deployment</i>, <i>scaling</i>, dan pengelolaan sumber daya yang tepat, aplikasi dapat berjalan lebih fleksibel, stabil, dan efisien sesuai kebutuhan.</p>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2026 Dewa Gede Pratama. Berjalan di atas Ubuntu & Nginx Docker.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Interaksi Filter Topik Materi
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const topicSections = document.querySelectorAll('.topic-section');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const selectedFilter = button.getAttribute('data-filter');
+
+                topicSections.forEach(section => {
+                    if (selectedFilter === 'all' || section.getAttribute('data-topic') === selectedFilter) {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
