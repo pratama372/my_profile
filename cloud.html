@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi Cloud Computing - Dewa Gede Pratama</title>
+    <style>
+        :root {
+            --bg-color: #1a1a1a;
+            --text-color: #f0f0f0;
+            --accent-color: #00ff88;
+            --card-bg: #2a2a2a;
+            --subcard-bg: #222222;
+            --danger-color: #ff6b6b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.65;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px 20px 40px;
+        }
+
+        /* Navigasi Antar Halaman */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--card-bg);
+            padding: 14px 22px;
+            border-radius: 10px;
+            border: 1px solid #383838;
+            margin-bottom: 20px;
+        }
+
+        .nav-brand {
+            font-weight: bold;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 1.05em;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 7px 15px;
+            border-radius: 6px;
+            font-size: 0.92em;
+            transition: all 0.25s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #383838;
+            color: var(--accent-color);
+        }
+
+        .nav-links a.active {
+            background-color: var(--accent-color);
+            color: #121212;
+            font-weight: 600;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0 30px;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        h1 span {
+            color: var(--accent-color);
+        }
+
+        .subtitle {
+            font-size: 1.08em;
+            color: #aaa;
+        }
+
+        /* Filter Topik */
+        .topic-filters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin: 25px 0 10px;
+        }
+
+        .filter-btn {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid #444;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--accent-color);
+            color: #121212;
+            border-color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        section.topic-section {
+            margin: 30px 0;
+            padding: 25px;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.35);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        h2 {
+            color: var(--accent-color);
+            margin-bottom: 16px;
+            border-bottom: 1px solid #444;
+            padding-bottom: 8px;
+            font-size: 1.45em;
+        }
+
+        h3 {
+            color: #fff;
+            margin-bottom: 8px;
+            font-size: 1.12em;
+        }
+
+        p {
+            margin-bottom: 12px;
+            color: #ddd;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin-bottom: 12px;
+        }
+
+        li {
+            margin-bottom: 6px;
+            color: #ddd;
+        }
+
+        /* Grid Cards */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            margin-top: 15px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+            margin-top: 15px;
+        }
+
+        .sub-card {
+            background-color: var(--subcard-bg);
+            padding: 18px;
+            border-radius: 8px;
+            border: 1px solid #383838;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.78em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .badge-green {
+            background-color: rgba(0, 255, 136, 0.15);
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+        }
+
+        .badge-red {
+            background-color: rgba(255, 107, 107, 0.15);
+            color: var(--danger-color);
+            border: 1px solid var(--danger-color);
+        }
+
+        .badge-neutral {
+            background-color: #333;
+            color: #ccc;
+            border: 1px solid #555;
+        }
+
+        .industry-block {
+            background-color: var(--subcard-bg);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #383838;
+            margin-bottom: 18px;
+        }
+
+        .industry-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .summary-box {
+            margin-top: 18px;
+            padding: 16px;
+            background-color: rgba(0, 255, 136, 0.08);
+            border: 1px solid var(--accent-color);
+            border-radius: 8px;
+        }
+
+        /* Tabel Responsif */
+        .table-wrapper {
+            overflow-x: auto;
+            margin-top: 14px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--subcard-bg);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #383838;
+            font-size: 0.94em;
+        }
+
+        th {
+            background-color: #1f1f1f;
+            color: var(--accent-color);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+            color: #777;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                flex-direction: column;
+                gap: 12px;
+            }
+            h1 {
+                font-size: 1.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav>
+            <a href="index.html" class="nav-brand">DGP // Portfolio</a>
+            <div class="nav-links">
+                <a href="index.html">Beranda</a>
+                <a href="cloud.html" class="active">Materi Cloud Computing</a>
+            </div>
+        </nav>
+
+        <header>
+            <h1>Catatan <span>Cloud Computing</span></h1>
+            <p class="subtitle">Model Layanan, Analisis Risiko, Studi Kasus SaaS & PaaS, hingga Arsitektur Sistem Industri</p>
+        </header>
+
+        <!-- Navigasi Filter Materi -->
+        <div class="topic-filters">
+            <button class="filter-btn active" data-filter="all">Semua Materi (6)</button>
+            <button class="filter-btn" data-filter="topik-1">1. Model Layanan</button>
+            <button class="filter-btn" data-filter="topik-2">2. Kelemahan Cloud</button>
+            <button class="filter-btn" data-filter="topik-3">3. SaaS: Moka POS</button>
+            <button class="filter-btn" data-filter="topik-4">4. PaaS 3 Industri</button>
+            <button class="filter-btn" data-filter="topik-5">5. Aplikasi Komersial</button>
+            <button class="filter-btn" data-filter="topik-6">6. Cloud vs In-House RS</button>
+        </div>
+
+        <!-- MATERI 1 -->
+        <section class="topic-section" data-topic="topik-1">
+            <h2>1. Jenis-Jenis Model Layanan Cloud Computing</h2>
+            <p>Layanan komputasi awan dibagi berdasarkan tingkat kontrol, fleksibilitas, dan pembagian tanggung jawab pengelolaan antara penyedia dan pengguna:</p>
+            
+            <div class="grid-3">
+                <div class="sub-card">
+                    <span class="badge badge-green">IaaS</span>
+                    <h3>Infrastructure as a Service</h3>
+                    <p>Menyewa komponen infrastruktur komputasi mentah secara virtual tanpa membeli perangkat keras fisik.</p>
+                    <ul>
+                        <li><strong>Disediakan Penyedia:</strong> Server virtual, <i>storage</i>, jaringan, virtualisasi.</li>
+                        <li><strong>Tanggung Jawab User:</strong> OS, <i>middleware</i>, database, dan aplikasi.</li>
+                        <li><strong>Contoh:</strong> AWS EC2, Google Compute Engine, Azure VM.</li>
+                    </ul>
+                </div>
+
+                <div class="sub-card">
+                    <span class="badge badge-green">PaaS</span>
+                    <h3>Platform as a Service</h3>
+                    <p>Lingkungan kerja siap pakai bagi <i>developer</i> untuk membangun, menguji, dan menjalankan aplikasi.</p>
+                    <ul>
+                        <li><strong>Disediakan Penyedia:</strong> Infrastruktur, OS, <i>dev tools</i>, database, <i>middleware</i>.</li>
+                        <li><strong>Tanggung Jawab User:</strong> Menulis kode dan mengelola logika aplikasi.</li>
+                        <li><strong>Contoh:</strong> Google App Engine, Heroku, Azure App Service.</li>
+                    </ul>
+                </div>
+
+                <div class="sub-card">
+                    <span class="badge badge-green">SaaS</span>
+                    <h3>Software as a Service</h3>
+                    <p>Aplikasi perangkat lunak siap pakai yang langsung diakses melalui <i>browser</i> atau aplikasi tanpa instalasi rumit.</p>
+                    <ul>
+                        <li><strong>Disediakan Penyedia:</strong> Seluruh <i>stack</i> aplikasi, keamanan, dan <i>update</i>.</li>
+                        <li><strong>Tanggung Jawab User:</strong> Menggunakan aplikasi dan mengelola data pribadi.</li>
+                        <li><strong>Contoh:</strong> Google Workspace, Microsoft 365, Dropbox, Zoom.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sub-card" style="margin-top: 16px;">
+                <span class="badge badge-neutral">Layanan Modern Spesifik</span>
+                <ul>
+                    <li><strong>FaaS / Serverless Computing:</strong> Menjalankan potongan kode/fungsi spesifik berdasarkan pemicu (<i>event</i>) tanpa mengelola server sama sekali.</li>
+                    <li><strong>DBaaS (Database as a Service):</strong> Pengelolaan basis data terkelola penuh oleh penyedia (contoh: Google Cloud SQL, Amazon RDS).</li>
+                    <li><strong>AIaaS (AI as a Service):</strong> Layanan kecerdasan buatan siap pakai seperti API pengenalan wajah, penerjemah, hingga model bahasa besar (LLM).</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- MATERI 2 -->
+        <section class="topic-section" data-topic="topik-2">
+            <h2>2. Kelemahan Menggunakan Layanan Cloud Sewaan (Public Cloud)</h2>
+            <p>Di balik kemudahan menyewa infrastruktur atau aplikasi <i>cloud</i> dari pihak ketiga, terdapat enam risiko utama yang perlu diantisipasi:</p>
+            <div class="grid-2">
+                <div class="sub-card">
+                    <h3>1. Ketergantungan Koneksi Internet</h3>
+                    <p>Karena seluruh sistem berjalan secara jarak jauh (<i>remote</i>), gangguan atau terputusnya koneksi internet akan langsung melumpuhkan akses ke data dan operasional aplikasi.</p>
+                </div>
+                <div class="sub-card">
+                    <h3>2. Potensi Masalah Keamanan & Privasi Data</h3>
+                    <p>Data disimpan di server pihak ketiga. Risiko kebocoran data (<i>data breach</i>) tetap ada akibat ancaman eksternal maupun kesalahan konfigurasi keamanan (<i>misconfiguration</i>) oleh pengguna.</p>
+                </div>
+                <div class="sub-card">
+                    <h3>3. Biaya Jangka Panjang Bisa Membengkak</h3>
+                    <p>Model <i>pay-as-you-go</i> atau langganan terasa murah di awal, namun saat trafik, penyimpanan, dan <i>bandwidth</i> membesar, biaya bulanan bisa melampaui biaya pembelian server sendiri.</p>
+                </div>
+                <div class="sub-card">
+                    <h3>4. Kurangnya Kontrol & Vendor Lock-in</h3>
+                    <p>Infrastruktur fisik dan pembaruan diatur penuh oleh penyedia. Ketergantungan pada fitur eksklusif satu vendor menyulitkan dan memahalkan proses migrasi ke penyedia lain.</p>
+                </div>
+                <div class="sub-card">
+                    <h3>5. Risiko Downtime dari Penyedia</h3>
+                    <p>Jika server pusat milik penyedia layanan <i>cloud</i> mengalami gangguan teknis massal atau pemeliharaan darurat, seluruh layanan aplikasi yang bergantung padanya ikut mati.</p>
+                </div>
+                <div class="sub-card">
+                    <h3>6. Kepatuhan Hukum & Regulasi (Compliance)</h3>
+                    <p>Sektor sensitif seperti perbankan dan rumah sakit terikat aturan ketat mengenai lokasi fisik penyimpanan data yang terkadang sulit dipenuhi oleh server <i>cloud</i> global.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MATERI 3 -->
+        <section class="topic-section" data-topic="topik-3">
+            <h2>3. Studi Kasus SaaS: Aplikasi Kasir Moka POS</h2>
+            <p><strong>Moka POS</strong> adalah contoh nyata penerapan <i>Software as a Service</i> di bidang kasir digital dan manajemen operasional toko.</p>
+
+            <div class="grid-2">
+                <div class="sub-card">
+                    <span class="badge badge-green">Keuntungan Moka (SaaS)</span>
+                    <ul>
+                        <li><strong>Praktis & Instan:</strong> Tidak perlu merakit server lokal atau merekrut tim IT; cukup instal di tablet, berlangganan, dan langsung berjualan.</li>
+                        <li><strong>Pembaruan Otomatis:</strong> Penambahan fitur, perbaikan <i>bug</i>, dan penyesuaian pembayaran digital ditangani langsung oleh pihak Moka.</li>
+                        <li><strong>Pantau Real-Time dari Mana Saja:</strong> Pemilik bisnis dapat memantau omzet, stok, dan performa kasir lewat <i>dashboard online</i> jarak jauh.</li>
+                        <li><strong>Integrasi Pembayaran Luas:</strong> Mendukung QRIS, e-wallet, kartu debit/kredit, hingga pesan-antar makanan.</li>
+                    </ul>
+                </div>
+
+                <div class="sub-card">
+                    <span class="badge badge-red">Kekurangan Moka (SaaS)</span>
+                    <ul>
+                        <li><strong>Wajib Internet:</strong> Jika jaringan internet toko mati atau lambat, sinkronisasi transaksi dan operasional kasir terhambat.</li>
+                        <li><strong>Biaya Berlangganan Berjalan:</strong> Biaya sewa bulanan/tahunan terus berjalan selama bisnis beroperasi.</li>
+                        <li><strong>Keterbatasan Kustomisasi:</strong> Pengguna harus mengikuti alur fitur bawaan dan tidak dapat memodifikasi kode sumber aplikasi.</li>
+                        <li><strong>Bukan Akuntansi Penuh:</strong> Fokus pada rekap penjualan & stok harian, bukan laporan neraca atau laba-rugi akuntansi mendalam.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sub-card" style="margin-top: 16px;">
+                <span class="badge badge-neutral">5 Fitur Utama Point of Sales (POS) pada Moka</span>
+                <ul>
+                    <li><strong>Manajemen Transaksi & Multi-Payment:</strong> Memproses pembayaran tunai, kartu debit/kredit, serta QRIS/e-wallet (GoPay, OVO, ShopeePay) dengan struk digital.</li>
+                    <li><strong>Manajemen Inventaris / Stok Real-Time:</strong> Pemotongan stok bahan/barang otomatis saat transaksi terjadi dan peringatan stok menipis.</li>
+                    <li><strong>Laporan & Analisis Penjualan:</strong> Rekap data harian hingga bulanan, analisis produk terlaris, dan pemantauan kinerja kasir.</li>
+                    <li><strong>Manajemen Meja & Pelanggan (CRM):</strong> Pemantauan status meja (kosong/terisi) untuk kafe/restoran serta sistem poin/promo loyalitas pelanggan.</li>
+                    <li><strong>Pengelolaan Multi-Outlet:</strong> Kontrol dan pemantauan banyak cabang toko sekaligus dari satu akun terpusat.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- MATERI 4 -->
+        <section class="topic-section" data-topic="topik-4">
+            <h2>4. Penerapan PaaS di Tiga Bidang Industri</h2>
+            <p>Bagaimana platform <strong>PaaS</strong> (seperti AWS Elastic Beanstalk, Google App Engine, Microsoft Azure Health, dan Firebase) bekerja di balik layar pada sektor perhotelan, rumah sakit, dan kuliner:</p>
+
+            <div class="industry-block">
+                <h3>A. Bidang Hotel Reservasi (Property Management & Booking Engine)</h3>
+                <ul>
+                    <li><strong>Platform PaaS:</strong> AWS Elastic Beanstalk / Google App Engine.</li>
+                    <li><strong>Cara Kerja:</strong> Tamu mencari kamar kosong melalui web/aplikasi → PaaS memproses permintaan, mengamankan transaksi pembayaran, dan memperbarui ketersediaan kamar secara <i>real-time</i> → saat <i>high season</i>, PaaS otomatis menambah kapasitas server (<i>auto-scaling</i>).</li>
+                    <li><strong>Kelebihan:</strong> Skalabilitas otomatis saat lonjakan tamu liburan & enkripsi data transaksi aman tanpa membangun infrastruktur dari nol.</li>
+                    <li><strong>Kekurangan:</strong> Risiko kelumpuhan reservasi jika platform pusat mengalami <i>downtime</i>.</li>
+                </ul>
+            </div>
+
+            <div class="industry-block">
+                <h3>B. Bidang Rumah Sakit (Sistem Rekam Medis Elektronik / EHR)</h3>
+                <ul>
+                    <li><strong>Platform PaaS:</strong> Microsoft Azure Health Data Services / AWS for Health.</li>
+                    <li><strong>Cara Kerja:</strong> Dokter menginput diagnosis dan resep di komputer → platform PaaS otomatis mengenkripsi data medis sesuai standar keamanan kesehatan → menyinkronkan data secara instan ke bagian apotek, laboratorium, dan poli lain, disertai <i>backup</i> berkala.</li>
+                    <li><strong>Kelebihan:</strong> Kepatuhan regulasi privasi medis tinggi (seperti standar HIPAA) & integrasi data antar-unit rumah sakit sangat cepat.</li>
+                    <li><strong>Kekurangan:</strong> Biaya berlangganan platform cenderung mahal karena standar keamanan dan regulasi yang ketat.</li>
+                </ul>
+            </div>
+
+            <div class="industry-block">
+                <h3>C. Bidang Kuliner (Restoran & Cloud Kitchen)</h3>
+                <ul>
+                    <li><strong>Platform PaaS:</strong> Firebase (Google) / Heroku.</li>
+                    <li><strong>Cara Kerja:</strong> Pelanggan memesan menu lewat ponsel → PaaS mengirim pemicu (<i>real-time trigger</i>) ke server <i>cloud</i> → rincian pesanan langsung muncul di layar monitor dapur (<i>Kitchen Display System</i>) → status "Selesai" mengirim notifikasi ke kurir/pembeli.</li>
+                    <li><strong>Kelebihan:</strong> Kecepatan pengembangan aplikasi tinggi (<i>time-to-market</i>) & sinkronisasi pesanan instan tanpa pusing mengatur server <i>backend</i>.</li>
+                    <li><strong>Kekurangan:</strong> Ketergantungan penuh (<i>vendor lock-in</i>) yang menyulitkan pemindahan sistem ke penyedia lain saat skala bisnis sudah besar.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- MATERI 5 -->
+        <section class="topic-section" data-topic="topik-5">
+            <h2>5. Contoh Aplikasi Komersial Nyata di Tiga Bidang</h2>
+            <p>Perangkat lunak siap pakai yang digunakan langsung oleh pelaku industri beserta alur kerja serta kelebihan dan kekurangannya:</p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Bidang</th>
+                            <th>Contoh Aplikasi</th>
+                            <th>Cara Kerja Utama</th>
+                            <th>Kelebihan & Kekurangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Hotel Reservasi</strong></td>
+                            <td><strong>Cloudbeds</strong>, <strong>Mews</strong>, <strong>Hotelogix</strong></td>
+                            <td>Mengatur <i>check-in/out</i> dan menyinkronkan ketersediaan kamar secara otomatis ke OTA (Agoda, Traveloka, Booking.com) agar tidak terjadi <i>double booking</i>.</td>
+                            <td>
+                                <span class="badge badge-green">+</span> Sinkronisasi lintas OTA otomatis & pantau okupansi jarak jauh.<br>
+                                <span class="badge badge-red">-</span> Operasional resepsionis lumpuh jika internet hotel putus.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rumah Sakit</strong></td>
+                            <td><strong>athenaOne</strong>, <strong>CareCloud</strong>, <strong>Epic Systems</strong></td>
+                            <td>Mencatat riwayat klinis, resep dokter, dan hasil lab secara terenkripsi agar bisa diakses bersamaan oleh seluruh unit/poli rumah sakit secara <i>real-time</i>.</td>
+                            <td>
+                                <span class="badge badge-green">+</span> Kolaborasi antar-unit akurat & standar keamanan medis tinggi.<br>
+                                <span class="badge badge-red">-</span> Biaya lisensi/berlangganan relatif mahal bagi klinik kecil.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kuliner / F&B</strong></td>
+                            <td><strong>Toast POS</strong>, <strong>Sapaad</strong>, <strong>Apicbase</strong></td>
+                            <td>Menerima pesanan kasir & aplikasi <i>delivery</i>, meneruskannya langsung ke layar dapur (<i>KDS</i>), dan memotong stok bahan baku otomatis.</td>
+                            <td>
+                                <span class="badge badge-green">+</span> Dapur lebih cepat, minim salah catat, & stok otomatis.<br>
+                                <span class="badge badge-red">-</span> Bergantung pada perangkat keras khusus vendor & internet stabil.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- MATERI 6 -->
+        <section class="topic-section" data-topic="topik-6">
+            <h2>6. Rumah Sakit: Sewa Layanan Cloud vs. Membuat Aplikasi Sendiri</h2>
+            <p>Perbandingan strategis antara menggunakan aplikasi <i>cloud</i> komersial dengan membangun sistem rekam medis sendiri (<i>In-House Development</i>):</p>
+
+            <div class="grid-2">
+                <div class="sub-card">
+                    <span class="badge badge-green">Opsi A: Sewa Layanan Cloud</span>
+                    <h3>Contoh: athenaOne / CareCloud</h3>
+                    <ul>
+                        <li><strong>Keunggulan:</strong> Cepat diimplementasikan, keamanan dan enkripsi sudah memenuhi standar regulasi medis, serta pembaruan sistem ditangani vendor.</li>
+                        <li><strong>Kekurangan:</strong> Biaya langganan jangka panjang tinggi dan alur kerja rumah sakit harus menyesuaikan fitur bawaan vendor.</li>
+                    </ul>
+                </div>
+
+                <div class="sub-card">
+                    <span class="badge badge-neutral">Opsi B: Buat Aplikasi Sendiri</span>
+                    <h3>In-House / Custom Development</h3>
+                    <ul>
+                        <li><strong>Keunggulan:</strong> Kustomisasi 100% sesuai SOP rumah sakit serta kepemilikan penuh atas kode sumber dan data tanpa <i>vendor lock-in</i>.</li>
+                        <li><strong>Kekurangan:</strong> Memakan waktu pengembangan lama, butuh tim IT & ahli keamanan siber besar, serta seluruh risiko kebocoran data ditanggung sendiri.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="summary-box">
+                <strong>Kesimpulan Pemilihan:</strong>
+                <ul style="margin-top: 8px; margin-bottom: 0;">
+                    <li><strong>Pilih Layanan Cloud</strong> jika rumah sakit/klinik membutuhkan sistem yang <strong>cepat beroperasi, aman secara standar internasional, dan tanpa merekrut tim IT besar</strong>.</li>
+                    <li><strong>Pilih Membuat Sendiri</strong> jika merupakan grup rumah sakit berskala sangat besar dengan <strong>anggaran melimpah, tim IT internal kuat, dan SOP yang sangat spesifik</strong>.</li>
+                </ul>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2026 Dewa Gede Pratama. Berjalan di atas Ubuntu & Nginx Docker.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Interaksi Filter Topik Materi
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const topicSections = document.querySelectorAll('.topic-section');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const selectedFilter = button.getAttribute('data-filter');
+
+                topicSections.forEach(section => {
+                    if (selectedFilter === 'all' || section.getAttribute('data-topic') === selectedFilter) {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
